@@ -1,4 +1,4 @@
-# Synctv::Ruby::Client
+# SyncTV Ruby Client
 
 Full client access to [SyncTV's API](http://api.synctv.com/v2/) to use in your gems and Rails apps. The access works based on [ActiveResource](https://github.com/rails/activeresource)
 
@@ -25,15 +25,14 @@ Automatically sign all outgoing ActiveResource requests from your app.
     Synctv::Client::Resource.client_key       = "<your_client_key_goes_here>"
     Synctv::Client::Resource.device_uid       = "<specify a randmom string>"
 
-    # Optionally, specify account information
+    # optionally, specify account information:
     Synctv::Client::Resource.account_email    = "<specify a user account email>"
     Synctv::Client::Resource.account_password = "<specify a user account password>"
     
     Synctv::Client::Resources.Media.find(1) # -> returns first media instance
     
-    # for convenience
+    # for convenience, include the namespace:
     include Synctv::Client::Resources
-
 
     # index
     Media.all
@@ -47,12 +46,16 @@ Automatically sign all outgoing ActiveResource requests from your app.
     
     # delete
     @media.delete
+    
+    # count
+    Media.count
 ```
 
 ### Available Resources
 
 The following resources are supported under the `Synctv::Client::Resources` namespace:
 
+``` ruby
     Account
     AccountType
     Bundle
@@ -70,6 +73,7 @@ The following resources are supported under the `Synctv::Client::Resources` name
     PlatformType
     Program
     Schedule
+```
 
 ### Filters
 
@@ -81,14 +85,6 @@ The easiest way to create a query against a resource is by using the `where` "sc
 
     # or
     Media.where(:named_like => "foo").where(:expire_end_date => "2013-02-15T02:06:56Z")
-```
-
-### Count
-
-Count works on all resources where a `count` member is defined, e.g. on `Media` or `Bundle.`
-
-``` ruby
-    Media.count
 ```
 
 ### Scopes
@@ -117,6 +113,28 @@ counterparts. Scopes can me chained together. By default the following scopes ar
 
     # :remove_fields, example:
     Media.remove_fields(:id)
+    
+    # :count, example:
+    Media.count
+    
+```
+
+### Tracking Changes
+
+By default SyncTV resources include the `ActiveModel::Dirty` module that takes care of tracking changes that need to be applied
+in `PUT` calls. Example:
+
+``` ruby
+    include Synctv::Client::Resources
+
+    @media = Media.find(1)
+
+    @media.name = "Foobar"
+    @media.dirty?
+    => true
+    
+    @media.changes
+    => {"name"=>["Foo", "Foobar"]}
 ```
 
 ### Adding Authentication to New Resources  ###
