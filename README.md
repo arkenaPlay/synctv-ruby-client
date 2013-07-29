@@ -1,4 +1,4 @@
-# Synctv::Ruby::Client
+# SyncTV Ruby Client
 
 Full client access to [SyncTV's API](http://api.synctv.com/v2/) to use in your gems and Rails apps. The access works based on [ActiveResource](https://github.com/rails/activeresource)
 
