@@ -1,15 +1,16 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
-require 'api_auth'
-require 'amatch'
-require 'rest_client'
-require 'curb'
+require 'synctv_ruby_client'
+
+# require 'amatch'
+# require 'rest_client'
+# require 'curb'
 
 require 'active_support'
 require 'active_support/test_case'
-require 'action_controller'
-require 'action_controller/test_process'
+#require 'action_controller'
+#require 'action_controller/test_process'
 require 'active_resource'
 require 'active_resource/http_mock'
 

@@ -7,38 +7,6 @@ class Synctv::Client::Resource < ActiveResource::Base
   self.prefix           = "/api/v2/"
   self.format           = :json
   
-  # localhost
-  self.site             = "http://localhost:5000"
-  self.client_key       = "upDEo1zNiqxGsrGHrzzBAC5ZFveYmHHped1RFK6Vtt8r"
-  self.device_uid       = "my_device_uid"
-  self.account_email    = "manager@synctv.com"
-  self.account_password = "sdf123gGG!"
-
-  # tf1-staging
-  # self.site             = "https://tf1-staging.synctv.com/api/v2/"
-  # self.client_key       = "BzeNrv15xQVRJBDVfFabjreqq5vyMC8qkWuiQ22HHcEr"
-  # self.device_uid       = "my_device_uid"
-  # self.account_email    = "cpw@synctv.com"
-  # self.account_password = "5ynCPW!"
-
-  # v2-dev
-  # self.site             = "https://v2-dev.synctv.com/api/v2/"
-  # self.client_key       = "BzeNrv15xQVRJBDVfFabjreqq5vyMC8qkWuiQ22HHcEr"
-  # self.device_uid       = "my_device_uid"
-  # self.account_email    = "manager@synctv.com"
-  # self.account_password = "sdf123gGG!"
-
-  # tf1-dev
-  # self.site             = "https://tf1-dev.synctv.com/api/v2/"
-  # self.client_key       = "908234CVXBNfhjksdiuewr89234KJHyfduisdbxvcnk8"  # "upDEo1zNiqxGsrGHrzzBAC5ZFveYmHHped1RFK6Vtt8r"
-  # self.device_uid       = "my_device_uid"
-  # self.account_email    = "admin@synctv.com"
-  # self.account_password = "zklAu89q"
-  # self.account_email    = "manager@synctv.com"
-  # self.account_password = "sdf123gGG!"
-  # self.account_email    = "cpw@synctv.com"
-  # self.account_password = "5ynCPW!"
-
   self.ssl_options = {
     # :cert         => OpenSSL::X509::Certificate.new(File.open(pem_file)),
     # :key          => OpenSSL::PKey::RSA.new(File.open(pem_file)),
