@@ -64,10 +64,15 @@ The following resources are supported under the `Synctv::Client::Resources` name
     ContainerGroup
     ContainerType
     Contributor
+    Ingest::Image
+    Ingest::Video
     Invoice
     Media
     MediaType
     Ownership
+    OwnershipPolicy::OwnershipFactory
+    OwnershipPolicy::PriceRule
+    OwnershipPolicy::ViewRule
     OwnershipPolicy
     Platform
     PlatformType
