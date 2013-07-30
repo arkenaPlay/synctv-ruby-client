@@ -34,17 +34,21 @@ Automatically sign all outgoing ActiveResource requests from your app.
     # for convenience, include the namespace:
     include Synctv::Client::Resources
 
-    # index
+    # POST
+    @media = Media.new(:name => "Foo", :description => "Bar")
+    @media.save
+
+    # GET index
     Media.all
     
-    # get
+    # GET show
     @media = Media.find(1) # -> returns first media instance
     
-    # put
+    # PUT
     @media.name = "Foobar"
     @media.save
     
-    # delete
+    # DELETE
     @media.delete
     
     # count
@@ -64,10 +68,15 @@ The following resources are supported under the `Synctv::Client::Resources` name
     ContainerGroup
     ContainerType
     Contributor
+    Ingest::Image
+    Ingest::Video
     Invoice
     Media
     MediaType
     Ownership
+    OwnershipPolicy::OwnershipFactory
+    OwnershipPolicy::PriceRule
+    OwnershipPolicy::ViewRule
     OwnershipPolicy
     Platform
     PlatformType
