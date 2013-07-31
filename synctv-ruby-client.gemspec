@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Full client access to SyncTV's API to use in your gems and Rails apps.}
   gem.homepage      = %q{https://github.com/synctv/synctv-ruby-client}
 
-  gem.add_dependency "activeresource"#, ">= 3.2"
+  gem.add_dependency "activeresource", "~> 3.2.13"
 
   gem.add_development_dependency "rspec", "~> 2.7.0"
   gem.add_development_dependency "sqlite3"

@@ -35,7 +35,7 @@ Automatically sign all outgoing ActiveResource requests from your app.
     include Synctv::Client::Resources
 
     # POST
-    @media = Media.new(:name => "Foo", :description => "Bar", :media_type => 1)
+    @media = Media.new(:name => "Foo", :description => "Bar", :media_type_id => 1)
     @media.save
 
     # GET index
@@ -49,7 +49,7 @@ Automatically sign all outgoing ActiveResource requests from your app.
     @media.save
     
     # DELETE
-    @media.delete
+    @media.destroy
     
     # count
     Media.count
