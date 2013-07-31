@@ -69,7 +69,7 @@ class Synctv::Client::Resource < ActiveResource::Base
     if method_name =~ /(=|\?)$/
       case $1
       when "="
-        send("#{$`}_will_change!") unless attributes[$`] == arguments.first
+        send("#{$`}_will_change!") if respond_to?("#{$`}_will_change!") && attributes[$`] != arguments.first
         attributes[$`] = arguments.first
       when "?"
         attributes[$`]

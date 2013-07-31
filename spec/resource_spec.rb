@@ -49,10 +49,31 @@ describe "Client::Resource" do
       end
     end
     
-    it "should find" do
-      media = Synctv::Client::Resources::Media.find(1)
-      media.id.should == 1
-      media.name.should == "Matz"
+    describe "finders" do
+      it "should find" do
+        media = Synctv::Client::Resources::Media.find(1)
+        media.id.should == 1
+        media.name.should == "Matz"
+      end
+    end
+    
+    describe "dirty" do
+      it "should register changes" do
+        media = Synctv::Client::Resources::Media.find(1)
+        media.name = "Foo"
+        media.name.should == "Foo"
+        media.should be_changed
+        media.changes.should == {"name"=>["Matz", "Foo"]} 
+      end
+      
+      it "should not register changes for unkown attributes" do
+        media = Synctv::Client::Resources::Media.find(1)
+        media.description = "Test Description"
+        media.should_not be_changed
+        media.changes.should == {} 
+        media.description.should == "Test Description"
+      end
+      
     end
   end
 end
