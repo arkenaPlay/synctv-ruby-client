@@ -11,6 +11,9 @@ require "synctv/client/scopes"
 require "synctv/client/resource"
 
 module Synctv::Client::Resources
+  module Ingest
+  end
 end
 
 Dir[File.dirname(__FILE__) + "/synctv/client/resources/*.rb"].each {|file| require file}
+Dir[File.dirname(__FILE__) + "/synctv/client/resources/**/*.rb"].each {|file| require file}

@@ -6,9 +6,15 @@ suggestions, ideas and improvements to SynctvRubyClient.
 * Table of Contents
 {:toc}
 
+## 0.1.4 (2013-08-01)
+
+Fixing a bug where resources are not being required correctly, like Ingest::Video and Ingest::Image.
+
+* adding resources specs
+
 ## 0.1.3 (2013-07-31)
 
-Fixed [#2](https://github.com/synctv/synctv-ruby-client/issues/2): Getting media clips throws error
+Fixed [#2](https://github.com/synctv/synctv-ruby-client/issues/2): Getting media clips throws error.
 
 ## 0.1.2 (2013-07-31)
 

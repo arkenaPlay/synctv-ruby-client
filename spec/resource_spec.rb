@@ -37,7 +37,7 @@ describe "Client::Resource" do
     
   end
   
-  describe "resources" do
+  describe "resource behavior" do
     before(:each) do
       Synctv::Client::Resource.site = "http://test.sample.com:5000"
       @media  = { :id => 1, :name => "Matz" }.to_json
@@ -46,14 +46,6 @@ describe "Client::Resource" do
         mock.get    "/api/v2/media/1.json", {}, @media
         mock.put    "/api/v2/media/1.json", {}, nil, 204
         mock.delete "/api/v2/media/1.json", {}, nil, 200
-      end
-    end
-    
-    describe "finders" do
-      it "should find" do
-        media = Synctv::Client::Resources::Media.find(1)
-        media.id.should == 1
-        media.name.should == "Matz"
       end
     end
     
