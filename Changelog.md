@@ -6,6 +6,10 @@ suggestions, ideas and improvements to SynctvRubyClient.
 * Table of Contents
 {:toc}
 
+## 0.1.3 (2013-07-31)
+
+Fixed [#2](https://github.com/synctv/synctv-ruby-client/issues/2): Getting media clips throws error
+
 ## 0.1.2 (2013-07-31)
 
 Fixed a problem where unpublished attributes would register a change for dirty attributes.

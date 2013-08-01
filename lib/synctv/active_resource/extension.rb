@@ -41,6 +41,8 @@ module Synctv
               message << "  API messages = #{[data["messages"]].flatten.join(", ")}" if data["messages"]
             end
           end
+        rescue
+          message
         end
         
       end
