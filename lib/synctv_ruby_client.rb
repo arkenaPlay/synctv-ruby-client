@@ -11,7 +11,13 @@ require "synctv/client/scopes"
 require "synctv/client/resource"
 
 module Synctv::Client::Resources
+  module Accounts; end
+  module Billing; end
   module Ingest
+    module Manifests; end
+  end
+  module Manifests; end
+  module Encodes
   end
 end
 

@@ -6,6 +6,33 @@ suggestions, ideas and improvements to SynctvRubyClient.
 * Table of Contents
 {:toc}
 
+## 0.1.5
+
+Adding new resources:
+
+    Accounts::ContainerLink
+    Accounts::Invoice
+    Accounts::MediaLink
+    Accounts::Ownership
+    Accounts::Profile
+    AvFormat
+    Billing::CreditCard
+    Billing::Ewallet
+    Billing::Xbox
+    Image
+    ImageFormat (Platform::ImageFormat)
+    IpWhitelist
+    Key (DashManifest::Key?)
+    Language
+    Manifests::Dash
+    Manifests::Smooth
+    Media::View
+    Subtitle
+    Ingest::Encodes::Mp4
+    Ingest::Manifests::Dash
+    Ingest::Manifests::Isp
+    Ingest::Manifests::Smooth
+
 ## 0.1.4 (2013-08-01)
 
 Fixing a bug where resources are not being required correctly, like Ingest::Video and Ingest::Image.
