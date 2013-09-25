@@ -6,6 +6,10 @@ suggestions, ideas and improvements to SynctvRubyClient.
 * Table of Contents
 {:toc}
 
+## 0.1.6
+
+Removing request parameter from authorize! and client_authorize!
+
 ## 0.1.5
 
 Adding new resources:

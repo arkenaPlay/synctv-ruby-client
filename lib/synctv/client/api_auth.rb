@@ -8,15 +8,29 @@ module Synctv
 
       class << self
         
-        def authorize!(request, site, client_key, device_uid = nil, account_email = nil, account_password = nil)
-          access_id, access_secret = client_authorize!(request, site, client_key, device_uid)
+        # Appends access_id and access_secret to a given request.
+        #
+        # Usage:
+        #
+        #     site     = "http://service.synctv.com/"
+        #     uri      = URI.parse(site)
+        #     http     = Net::HTTP.new(uri.host, uri.port)
+        #     request  = Net::HTTP::Get.new("/api/v2/media.json",
+        #       'content-type' => 'text/plain')
+        #     access_id, access_secret = Synctv::Client::ApiAuth.authorize! 
+        #       site, "client_key", "device_uid", "account@email.com", "account_password"
+        #     Synctv::Client::ApiAuth.append_signature!(request, access_id, access_secret)
+        #     response = http.request(request)
+        #
+        def authorize!(site, client_key, device_uid = nil, account_email = nil, account_password = nil)
+          access_id, access_secret = client_authorize!(site, client_key, device_uid)
           if account_email && account_password
-            user_authorize!(request, site, access_id, access_secret, account_email, account_password)
+            user_authorize!(site, access_id, access_secret, account_email, account_password)
           end
           return access_id, access_secret
         end
         
-        def client_authorize!(request, site, client_key, device_uid = nil)
+        def client_authorize!(site, client_key, device_uid = nil)
           http = Net::HTTP.new(site.host, site.port)
           if site.scheme == "https"
             http.use_ssl = true
@@ -27,13 +41,13 @@ module Synctv
           
           if response.is_a?(Net::HTTPSuccess)
             body = JSON.parse(response.body)
-            request["access_id"], request["access_secret"] = body["response"]["access_id"], body["response"]["access_secret"]
+            return body["response"]["access_id"], body["response"]["access_secret"]
           else 
             raise "Could not authorize client."
           end
         end
         
-        def user_authorize!(request, site, access_id, access_secret, account_email, account_password)
+        def user_authorize!(site, access_id, access_secret, account_email, account_password)
           http = Net::HTTP.new(site.host, site.port)
           if site.scheme == "https"
             http.use_ssl = true
@@ -52,7 +66,7 @@ module Synctv
           end
         end
         
-        def generate_signature!(request, access_id = nil, access_secret = nil)
+        def generate_signature!(request, access_id, access_secret)
           access_id     ||= request["access_id"]
           access_secret ||= request["access_secret"]
           filter_keys   = [:signature, :id]
@@ -239,8 +253,8 @@ module Synctv
               if access_id && access_secret
                 path   = ApiAuth.append_signature!(rqs, access_id, access_secret)
               elsif client_key
-                self.access_id, self.access_secret = ApiAuth.authorize!(rqs, site, client_key, device_uid,
-                  account_email, account_password)
+                self.access_id, self.access_secret = ApiAuth.authorize!(
+                  site, client_key, device_uid, account_email, account_password)
                 path = ApiAuth.append_signature!(rqs, access_id, access_secret)
               end
               puts " [#{method.to_s.upcase}] #{site.scheme}://#{site.host}#{site.port ? ":#{site.port}" : ""}#{path}"
